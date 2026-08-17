@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "rootDir": "src",
+    "outDir": "dist/plugin/types",
+    "declaration": true
+  },
+  "include": ["src/harness/client.ts", "src/harness/client-bundle-entry.ts", "src/harness/spatial-view.tsx"]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "spatial-trajectory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AgentAstra — a spatial agent-trajectory view for DeepSeek Harness",
+  "license": "MIT",
+  "author": "AgentAstra contributors",
+  "keywords": [
+    "agent-astra",
+    "deepseek",
+    "deepseek-harness",
+    "agent",
+    "threejs",
+    "visualization",
+    "trajectory"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rgndmln/dsh-agent-astra.git"
+  },
+  "homepage": "https://github.com/Rgndmln/dsh-agent-astra#readme",
+  "bugs": {
+    "url": "https://github.com/Rgndmln/dsh-agent-astra/issues"
+  },
+  "type": "module",
+  "main": "./dist/plugin/harness/host-entry.js",
+  "types": "./dist/plugin/harness/host-entry.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/plugin/harness/host-entry.d.ts",
+      "default": "./dist/plugin/harness/host-entry.js"
+    },
+    "./client": {
+      "types": "./dist/plugin/types/harness/client-bundle-entry.d.ts",
+      "default": "./dist/plugin/harness/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "assets", "cordis.patch.yml", "README.md", "package.json"],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && vite build --config vite.plugin.config.ts && tsc -p tsconfig.plugin.json && tsc -p tsconfig.client-types.json",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.plugin.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ],
+      "platform": "web"
+    },
+    "compatibility": "@deepseek-ai/dsh 0.1.0-rc.6"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/three": "latest",
+    "@vitejs/plugin-react": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest",
+    "jsdom": "latest"
+  }
+}

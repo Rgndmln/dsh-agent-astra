@@ -1,0 +1,6 @@
+# The installed package is a no-op host row plus a browser client bundle. The
+# web client-module service discovers its `dsh.client` declaration from this
+# row and serves the `./client` export through `/plugins/<package>/client.js`.
+- insert:
+    - id: spatial-trajectory
+      name: spatial-trajectory
