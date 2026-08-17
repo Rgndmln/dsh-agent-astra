@@ -20,34 +20,19 @@ Most agent UIs turn a busy run into a long list of messages and collapsed tool r
 
 The GIF above was recorded from a fresh, read-only Flash-model session. It follows two short prompts through their semantic checkpoints, including a single `pwd` tool call. No repository files were read or changed for the recording.
 
-## Use it
+## Install as a DeepSeek Harness plugin
 
-### In a local checkout
+This is a **DeepSeek Harness plugin**. It targets `@deepseek-ai/dsh 0.1.0-rc.6` and uses the Harness client module loader.
 
-```bash
-npm install
-npm run typecheck
-npm test
-npm run build
-```
-
-For the standalone replay view:
+Install it into the `web` profile from GitHub with either form:
 
 ```bash
-npm run dev
+dsh plugin --profile web add github:Rgndmln/dsh-agent-astra
+# or
+dsh plugin --profile web add https://github.com/Rgndmln/dsh-agent-astra.git
 ```
 
-Open `http://127.0.0.1:4173`. The standalone view plays a deterministic fixture, so it is useful for UI work and does not spend model tokens.
-
-### In DeepSeek Harness
-
-This plugin targets `@deepseek-ai/dsh 0.1.0-rc.6` and uses the Harness client module loader. Build it, then install the local package into the web profile:
-
-```bash
-dsh plugin --profile web add /absolute/path/to/spatial-trajectory
-```
-
-Open a conversation and choose **Spatial**. The view is session-scoped: it renders the currently selected conversation only, and disposes its WebGL scene when the view unmounts.
+Then open a conversation in DeepSeek Harness and choose **Spatial**. The view is session-scoped: it renders the currently selected conversation only, and disposes its WebGL scene when the view unmounts.
 
 If macOS reaches its file-watcher limit during local Harness development, `CHOKIDAR_USEPOLLING=1 dsh web` is a practical temporary workaround.
 
@@ -98,16 +83,6 @@ React controls + Three.js renderer
 - Canvas textures and animated links are bounded; dense tool bursts collapse into a quiet execution trace instead of a cloud of repeated geometry.
 - If WebGL is unavailable, the surrounding controls and textual fallback remain usable.
 
-## Development checks
-
-```bash
-npm run typecheck
-npm test
-npm run build
-```
-
-The test suite covers projection, checkpoint compaction, temporal windows, cursor-readable activity, and the React shell. TypeScript also rejects unused locals and parameters, which helps keep the embedded bundle from collecting old entry points.
-
 ## Repository map
 
 ```text
@@ -152,34 +127,19 @@ This is an experimental interaction plugin, not an attempt to turn every agent r
 
 上方 GIF 来自一个全新的只读 Flash 模型会话。它按语义检查点回放两条短提示，其中包含一次 `pwd` 工具调用；录制过程没有读取或修改任何仓库文件。
 
-## 使用方式
+## 作为 DeepSeek Harness 插件安装
 
-### 本地运行
+这是一个 **DeepSeek Harness 插件**，目标版本为 `@deepseek-ai/dsh 0.1.0-rc.6`，使用 Harness 客户端模块加载器。
 
-```bash
-npm install
-npm run typecheck
-npm test
-npm run build
-```
-
-如需打开独立回放视图：
+可以通过以下任一方式从 GitHub 安装到 `web` profile：
 
 ```bash
-npm run dev
+dsh plugin --profile web add github:Rgndmln/dsh-agent-astra
+# 或
+dsh plugin --profile web add https://github.com/Rgndmln/dsh-agent-astra.git
 ```
 
-访问 `http://127.0.0.1:4173`。独立视图播放确定性的 fixture，适合调试 UI，也不会消耗模型 token。
-
-### 接入 DeepSeek Harness
-
-插件目标版本为 `@deepseek-ai/dsh 0.1.0-rc.6`，使用 Harness 客户端模块加载器。先构建，再将本地包安装到 web profile：
-
-```bash
-dsh plugin --profile web add /absolute/path/to/spatial-trajectory
-```
-
-打开任意对话后，选择 **Spatial**。视图与会话绑定：它只渲染当前选中的对话，并会在视图卸载时释放 WebGL 场景。
+然后打开 DeepSeek Harness 中的任意对话，选择 **Spatial**。视图与会话绑定：它只渲染当前选中的对话，并会在视图卸载时释放 WebGL 场景。
 
 如果 macOS 在本地 Harness 开发时达到文件监听数量上限，可临时使用 `CHOKIDAR_USEPOLLING=1 dsh web`。
 
@@ -229,16 +189,6 @@ React 控制层 + Three.js 渲染器
 - 视图跟随当前会话；切换走后，后台对话不会继续渲染。
 - Canvas 纹理和动画连接都有上限；密集工具调用会压成安静的执行痕迹，而不是重复几何体组成的云团。
 - WebGL 不可用时，周围控制和文本回退仍然可用。
-
-## 开发检查
-
-```bash
-npm run typecheck
-npm test
-npm run build
-```
-
-测试覆盖投影、检查点压缩、时间窗口、按游标读取的活动，以及 React 外壳。TypeScript 同时拒绝未使用的局部变量和参数，避免嵌入式 bundle 重新积累旧入口。
 
 ## 仓库结构
 
